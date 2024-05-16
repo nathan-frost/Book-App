@@ -1,0 +1,206 @@
+<div>
+  <div>
+    <h1>
+      Book #<%= @the_book.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/books">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_book/<%= @the_book.id %>">
+          Delete book
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_book.title %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_book.description %>
+      </dd>
+
+      <dt>
+        Published date
+      </dt>
+      <dd>
+        <%= @the_book.published_date %>
+      </dd>
+
+      <dt>
+        Isbn13
+      </dt>
+      <dd>
+        <%= @the_book.isbn13 %>
+      </dd>
+
+      <dt>
+        Page count
+      </dt>
+      <dd>
+        <%= @the_book.page_count %>
+      </dd>
+
+      <dt>
+        Image url
+      </dt>
+      <dd>
+        <%= @the_book.image_url %>
+      </dd>
+
+      <dt>
+        Publisher
+      </dt>
+      <dd>
+        <%= @the_book.publisher %>
+      </dd>
+
+      <dt>
+        Author
+      </dt>
+      <dd>
+        <%= @the_book.author_id %>
+      </dd>
+
+      <dt>
+        Reviews count
+      </dt>
+      <dd>
+        <%= @the_book.reviews_count %>
+      </dd>
+
+      <dt>
+        Classifications count
+      </dt>
+      <dd>
+        <%= @the_book.classifications_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_book.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_book.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit book
+    </h2>
+
+    <form action="/modify_book/<%= @the_book.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_book.title %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_book.description %></textarea>
+      </div>
+
+      <div>
+        <label for="published_date_box">
+          Published date
+        </label>
+
+        <input type="text" id="published_date_box" name="query_published_date" value="<%= @the_book.published_date %>">
+      </div>
+
+      <div>
+        <label for="isbn13_box">
+          Isbn13
+        </label>
+
+        <input type="text" id="isbn13_box" name="query_isbn13" value="<%= @the_book.isbn13 %>">
+      </div>
+
+      <div>
+        <label for="page_count_box">
+          Page count
+        </label>
+
+        <input type="text" id="page_count_box" name="query_page_count" value="<%= @the_book.page_count %>">
+      </div>
+
+      <div>
+        <label for="image_url_box">
+          Image url
+        </label>
+
+        <input type="text" id="image_url_box" name="query_image_url" value="<%= @the_book.image_url %>">
+      </div>
+
+      <div>
+        <label for="publisher_box">
+          Publisher
+        </label>
+
+        <input type="text" id="publisher_box" name="query_publisher" value="<%= @the_book.publisher %>">
+      </div>
+
+      <div>
+        <label for="author_id_box">
+          Author
+        </label>
+
+        <input type="text" id="author_id_box" name="query_author_id" value="<%= @the_book.author_id %>">
+      </div>
+
+      <div>
+        <label for="reviews_count_box">
+          Reviews count
+        </label>
+
+        <input type="text" id="reviews_count_box" name="query_reviews_count" value="<%= @the_book.reviews_count %>">
+      </div>
+
+      <div>
+        <label for="classifications_count_box">
+          Classifications count
+        </label>
+
+        <input type="text" id="classifications_count_box" name="query_classifications_count" value="<%= @the_book.classifications_count %>">
+      </div>
+
+      <button>
+        Update book
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

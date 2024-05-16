@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Review #<%= @the_review.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/reviews">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_review/<%= @the_review.id %>">
+          Delete review
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Reviewer
+      </dt>
+      <dd>
+        <%= @the_review.reviewer_id %>
+      </dd>
+
+      <dt>
+        Rating numeric
+      </dt>
+      <dd>
+        <%= @the_review.rating_numeric %>
+      </dd>
+
+      <dt>
+        Review
+      </dt>
+      <dd>
+        <%= @the_review.review %>
+      </dd>
+
+      <dt>
+        Book
+      </dt>
+      <dd>
+        <%= @the_review.book_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_review.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_review.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit review
+    </h2>
+
+    <form action="/modify_review/<%= @the_review.id %>"  method="post" >
+      <div>
+        <label for="reviewer_id_box">
+          Reviewer
+        </label>
+
+        <input type="text" id="reviewer_id_box" name="query_reviewer_id" value="<%= @the_review.reviewer_id %>">
+      </div>
+
+      <div>
+        <label for="rating_numeric_box">
+          Rating numeric
+        </label>
+
+        <input type="text" id="rating_numeric_box" name="query_rating_numeric" value="<%= @the_review.rating_numeric %>">
+      </div>
+
+      <div>
+        <label for="review_box">
+          Review
+        </label>
+
+        <textarea id="review_box" name="query_review"><%= @the_review.review %></textarea>
+      </div>
+
+      <div>
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="query_book_id" value="<%= @the_review.book_id %>">
+      </div>
+
+      <button>
+        Update review
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

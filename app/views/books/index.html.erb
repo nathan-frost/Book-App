@@ -1,0 +1,230 @@
+<div>
+  <div>
+    <h1>
+      List of all books
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new book
+    </h2>
+
+    <form action="/insert_book" method="post">
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="published_date_box">
+          Published date
+        </label>
+
+        <input type="text" id="published_date_box" name="query_published_date">
+      </div>
+
+      <div>
+        <label for="isbn13_box">
+          Isbn13
+        </label>
+
+        <input type="text" id="isbn13_box" name="query_isbn13">
+      </div>
+
+      <div>
+        <label for="page_count_box">
+          Page count
+        </label>
+
+        <input type="text" id="page_count_box" name="query_page_count">
+      </div>
+
+      <div>
+        <label for="image_url_box">
+          Image url
+        </label>
+
+        <input type="text" id="image_url_box" name="query_image_url">
+      </div>
+
+      <div>
+        <label for="publisher_box">
+          Publisher
+        </label>
+
+        <input type="text" id="publisher_box" name="query_publisher">
+      </div>
+
+      <div>
+        <label for="author_id_box">
+          Author
+        </label>
+
+        <input type="text" id="author_id_box" name="query_author_id">
+      </div>
+
+      <div>
+        <label for="reviews_count_box">
+          Reviews count
+        </label>
+
+        <input type="text" id="reviews_count_box" name="query_reviews_count">
+      </div>
+
+      <div>
+        <label for="classifications_count_box">
+          Classifications count
+        </label>
+
+        <input type="text" id="classifications_count_box" name="query_classifications_count">
+      </div>
+
+      <button>
+        Create book
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Published date
+        </th>
+
+        <th>
+          Isbn13
+        </th>
+
+        <th>
+          Page count
+        </th>
+
+        <th>
+          Image url
+        </th>
+
+        <th>
+          Publisher
+        </th>
+
+        <th>
+          Author
+        </th>
+
+        <th>
+          Reviews count
+        </th>
+
+        <th>
+          Classifications count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_books.each do |a_book| %>
+      <tr>
+        <td>
+          <%= a_book.id %>
+        </td>
+
+        <td>
+          <%= a_book.title %>
+        </td>
+
+        <td>
+          <%= a_book.description %>
+        </td>
+
+        <td>
+          <%= a_book.published_date %>
+        </td>
+
+        <td>
+          <%= a_book.isbn13 %>
+        </td>
+
+        <td>
+          <%= a_book.page_count %>
+        </td>
+
+        <td>
+          <%= a_book.image_url %>
+        </td>
+
+        <td>
+          <%= a_book.publisher %>
+        </td>
+
+        <td>
+          <%= a_book.author_id %>
+        </td>
+
+        <td>
+          <%= a_book.reviews_count %>
+        </td>
+
+        <td>
+          <%= a_book.classifications_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_book.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_book.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/books/<%= a_book.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

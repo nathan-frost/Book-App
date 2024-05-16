@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Classification #<%= @the_classification.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/classifications">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_classification/<%= @the_classification.id %>">
+          Delete classification
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Book
+      </dt>
+      <dd>
+        <%= @the_classification.book_id %>
+      </dd>
+
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_classification.category_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_classification.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_classification.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit classification
+    </h2>
+
+    <form action="/modify_classification/<%= @the_classification.id %>"  method="post" >
+      <div>
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="query_book_id" value="<%= @the_classification.book_id %>">
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" value="<%= @the_classification.category_id %>">
+      </div>
+
+      <button>
+        Update classification
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

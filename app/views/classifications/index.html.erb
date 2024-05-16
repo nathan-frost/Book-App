@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all classifications
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new classification
+    </h2>
+
+    <form action="/insert_classification" method="post">
+      <div>
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="query_book_id">
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id">
+      </div>
+
+      <button>
+        Create classification
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Book
+        </th>
+
+        <th>
+          Category
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_classifications.each do |a_classification| %>
+      <tr>
+        <td>
+          <%= a_classification.id %>
+        </td>
+
+        <td>
+          <%= a_classification.book_id %>
+        </td>
+
+        <td>
+          <%= a_classification.category_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_classification.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_classification.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/classifications/<%= a_classification.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
