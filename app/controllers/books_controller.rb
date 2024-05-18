@@ -8,19 +8,19 @@ class BooksController < ApplicationController
   end
 
   def search
-    search_book = params.fetch("query_title")
+    @search_book = params.fetch("query_title")
         
-    the_book = GoogleBooks.search(search_book)
+    the_book = GoogleBooks.search(@search_book)
     first_book = the_book.first
 
-    title = first_book.title
-    description = first_book.published_date
-    published_date = first_book.published_date
-    isbn = first_book.isbn
-    page_count = first_book.page_count
-    publisher = first_book.publisher
-
-    authors = first_book.author
+    @title = first_book.title
+    @description = first_book.description
+    @published_date = first_book.published_date
+    @isbn = first_book.isbn
+    @page_count = first_book.page_count
+    @publisher = first_book.publisher
+    @authors = first_book.authors_array
+    @image = first_book.image_link(:zoom => 2)
 
     render({ :template => "books/search" })
   end

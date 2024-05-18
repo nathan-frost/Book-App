@@ -1,1 +1,56 @@
-<%= @fb %>
+<h1>Search: <%= @search_book%></h1>
+
+<img src="<%= @image %>" alt="Thumbnail"/>
+
+<div>
+  <form class="form-floating mb-3">
+    <input type="title" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@title %>">
+    <label for="floatingInputValue">Title</label>
+  </form>
+</div>
+
+<div class="form-floating mb-3">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2Disabled" style="height: 100px"><%=@description %></textarea>
+  <label for="floatingTextarea2Disabled">Description</label>
+</div>
+
+<div class="form-floating">
+  <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example">
+    <option selected>Select One Author</option>
+    <% @authors.each do |author|%>
+      <option value="<%= author%>"><%= author%></option>  
+    <% end %>
+
+  </select>
+  <label for="floatingSelectDisabled">Works with selects</label>
+</div>
+
+<hr>
+
+<div>
+  <form class="form-floating mb-3">
+    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@isbn %>" disabled>
+    <label for="floatingInputValue">ISBN</label>
+  </form>
+</div>
+
+<div>
+  <form class="form-floating mb-3">
+    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value=" <%=@published_date %>" disabled>
+    <label for="floatingInputValue">Published Date</label>
+  </form>
+</div>
+
+<div>
+  <form class="form-floating mb-3">
+    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@page_count %>" disabled>
+    <label for="floatingInputValue">Page Count</label>
+  </form>
+</div>
+
+<div>
+  <form class="form-floating mb-3">
+    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@publisher %>" disabled>
+    <label for="floatingInputValue">Publisher</label>
+  </form>
+</div>
