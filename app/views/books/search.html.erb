@@ -31,45 +31,20 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<hr>
 
 <div>
   <form action ="/insert_book" method="post">
     <div class="form-floating mb-3">
-      <input type="title" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@title %>">
+      <input type="title" class="form-control" name="query_title" id="query_title" placeholder="name@example.com" value="<%=@title %>">
       <label for="floatingInputValue">Title</label>    
     </div>
-
     <div class="form-floating mb-3">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2Disabled" style="height: 100px"><%=@description %></textarea>
+      <textarea class="form-control" placeholder="Leave a comment here" id="query_description" name="query_description" style="height: 100px"><%=@description %></textarea>
       <label for="floatingTextarea2Disabled">Description</label>
     </div>
-
     <div class="form-floating">
-      <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example">
+      <select class="form-select" id="query_author" name="query_author" aria-label="Floating label disabled select example">
         <option selected>Select One Author</option>
         <% @authors.each do |author|%>
           <option value="<%= author%>"><%= author%></option>  
@@ -86,46 +61,30 @@
 
       <div>
         <div class="form-floating mb-3">
-          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@isbn %>" disabled>
+          <input type="text area" class="form-control fw-lighter" id="query_isbn13" name="query_isbn13" value="<%=@isbn %>" readonly="readonly">
           <label for="floatingInputValue">ISBN</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value=" <%=@published_date %>" disabled>
+          <input type="text area" class="form-control fw-lighter" id="query_published_date" name="query_published_date" value=" <%=@published_date %>" readonly="readonly">
           <label for="floatingInputValue">Published Date</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@page_count %>" disabled>
+          <input type="text area" class="form-control fw-lighter" id="query_page_count" name="query_page_count" value="<%=@page_count %>" readonly="readonly">
           <label for="floatingInputValue">Page Count</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@publisher %>" disabled>
+          <input type="text area" class="form-control fw-lighter" id="query_publisher" name="query_publisher" value="<%=@publisher %>" readonly="readonly">
           <label for="floatingInputValue">Publisher</label>
         </div>
       </div>
     </div>
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" type="button">Add Book</button>
+      <button class="btn btn-primary">Add Book</button>
     </div>
-
-
-
   </form>
 </div>
 
 <hr>
-
-
-
-    the_book.title = params.fetch("query_title")
-    the_book.description = params.fetch("query_description")
-    the_book.published_date = params.fetch("query_published_date")
-    the_book.isbn13 = params.fetch("query_isbn13")
-    the_book.page_count = params.fetch("query_page_count")
-    the_book.image_url = params.fetch("query_image_url")
-    the_book.publisher = params.fetch("query_publisher")
-    the_book.author_id = params.fetch("query_author_id")
-    the_book.reviews_count = params.fetch("query_reviews_count")
-    the_book.classifications_count = params.fetch("query_classifications_count")

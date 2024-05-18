@@ -34,6 +34,16 @@ class BooksController < ApplicationController
   end
 
   def create
+    the_author = params.fetch("query_author")
+    
+    if Author.where({ :name => the_author}).present?
+      author_id = Author.where({ :name => the_author}).at(0).id
+    else
+      author = Author.new
+      author.name = the_author
+      author.save
+    end
+    
     the_book = Book.new
     the_book.title = params.fetch("query_title")
     the_book.description = params.fetch("query_description")
@@ -43,8 +53,6 @@ class BooksController < ApplicationController
     the_book.image_url = params.fetch("query_image_url")
     the_book.publisher = params.fetch("query_publisher")
     the_book.author_id = params.fetch("query_author_id")
-    the_book.reviews_count = params.fetch("query_reviews_count")
-    the_book.classifications_count = params.fetch("query_classifications_count")
 
     if the_book.valid?
       the_book.save
