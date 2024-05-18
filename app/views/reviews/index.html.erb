@@ -33,8 +33,34 @@
 
 <hr>
 
+<div>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover table-striped" border="1">
+      <thead class = "table-dark text-center">
+        <th>Book Title</th>
+        <th>Reviewer</th>
+        <th>Rating</th>
+        <th>Review</th>
+        <th> </th>
+      </thead>
+      <tbody class="text-center">
+        <% @list_of_reviews.each do |a_review| %>
+        <tr>
+          <td><%= Book.where({ :id => a_review.id}).at(0).title %></td>
+          <td><%= User.where({ :id => a_review.id}).at(0).last_name + ", " + User.where({ :id => a_review.id}).at(0).first_name %></td>
+          <td><%= a_review.rating_numeric %></td>
+          <td><%= a_review.review %></td>
+          <td>
+            <a href="/reviews/<%= a_review.id %>">Show details</a>
+          </td>
+        </tr>
+        <% end %>
+      <tbody >
+    </table>
+  </div>
+</div>
 
-
+<%= paginate @list_of_reviews%>
 
 
 
@@ -89,82 +115,3 @@
     </form>
   </div>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Reviewer
-        </th>
-
-        <th>
-          Rating numeric
-        </th>
-
-        <th>
-          Review
-        </th>
-
-        <th>
-          Book
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_reviews.each do |a_review| %>
-      <tr>
-        <td>
-          <%= a_review.id %>
-        </td>
-
-        <td>
-          <%= a_review.reviewer_id %>
-        </td>
-
-        <td>
-          <%= a_review.rating_numeric %>
-        </td>
-
-        <td>
-          <%= a_review.review %>
-        </td>
-
-        <td>
-          <%= a_review.book_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_review.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_review.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/reviews/<%= a_review.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>
