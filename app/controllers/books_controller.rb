@@ -42,6 +42,7 @@ class BooksController < ApplicationController
       author = Author.new
       author.name = the_author
       author.save
+      author_id = author.id
     end
     
     the_book = Book.new
@@ -52,7 +53,7 @@ class BooksController < ApplicationController
     the_book.page_count = params.fetch("query_page_count")
     the_book.image_url = params.fetch("query_image_url")
     the_book.publisher = params.fetch("query_publisher")
-    the_book.author_id = params.fetch("query_author_id")
+    the_book.author_id = author_id
 
     if the_book.valid?
       the_book.save
