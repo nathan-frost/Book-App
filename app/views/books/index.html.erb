@@ -1,104 +1,45 @@
-<div>
+<div class = "d-flex justify-content-between">
   <div>
     <h1>
-      List of all books
+      List of Books
     </h1>
   </div>
-</div>
-
-<hr>
-
-<div>
   <div>
-    <h2>
-      Add a new book
-    </h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Book
+    </button>
 
-    <form action="/insert_book" method="post">
-      <div>
-        <label for="title_box">
-          Title
-        </label>
-
-        <input type="text" id="title_box" name="query_title">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Book</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search by Title" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div>
-        <label for="description_box">
-          Description
-        </label>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-        <textarea id="description_box" name="query_description" rows="3"></textarea>
-      </div>
-
-      <div>
-        <label for="published_date_box">
-          Published date
-        </label>
-
-        <input type="text" id="published_date_box" name="query_published_date">
-      </div>
-
-      <div>
-        <label for="isbn13_box">
-          Isbn13
-        </label>
-
-        <input type="text" id="isbn13_box" name="query_isbn13">
-      </div>
-
-      <div>
-        <label for="page_count_box">
-          Page count
-        </label>
-
-        <input type="text" id="page_count_box" name="query_page_count">
-      </div>
-
-      <div>
-        <label for="image_url_box">
-          Image url
-        </label>
-
-        <input type="text" id="image_url_box" name="query_image_url">
-      </div>
-
-      <div>
-        <label for="publisher_box">
-          Publisher
-        </label>
-
-        <input type="text" id="publisher_box" name="query_publisher">
-      </div>
-
-      <div>
-        <label for="author_id_box">
-          Author
-        </label>
-
-        <input type="text" id="author_id_box" name="query_author_id">
-      </div>
-
-      <div>
-        <label for="reviews_count_box">
-          Reviews count
-        </label>
-
-        <input type="text" id="reviews_count_box" name="query_reviews_count">
-      </div>
-
-      <div>
-        <label for="classifications_count_box">
-          Classifications count
-        </label>
-
-        <input type="text" id="classifications_count_box" name="query_classifications_count">
-      </div>
-
-      <button>
-        Create book
-      </button>
-    </form>
   </div>
 </div>
 
@@ -119,7 +60,7 @@
       <tbody class="text-center">
         <% @list_of_books.each do |a_book| %>
         <tr>
-          <td><%= a_book.image_url %></td>
+          <td><img src="<%= a_book.image_url %>" alt="Thumbnail" width="36" height="30"/></td>
           <td><%= a_book.title %></td>
           <td><%= a_book.author_id %></td>
           <td><%= a_book.published_date %></td>
@@ -137,12 +78,12 @@
 
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <ul class="pagination d-flex flex-row-reverse">
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>    
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
   </ul>
 </nav>
 

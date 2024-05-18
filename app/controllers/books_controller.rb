@@ -4,6 +4,10 @@ class BooksController < ApplicationController
 
     @list_of_books = matching_books.order({ :created_at => :desc })
 
+    books = GoogleBooks.search('The Great Gatsby')
+    first_book = books.first
+    @fb = first_book.authors
+
     render({ :template => "books/index" })
   end
 
