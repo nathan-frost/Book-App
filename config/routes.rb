@@ -97,6 +97,9 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_book/:path_id", { :controller => "books", :action => "destroy" })
 
+  #BOOK SEARCH
+  get("/book_search", { :controller => "books", :action => "search" })
+
   #------------------------------
 
   devise_for :users

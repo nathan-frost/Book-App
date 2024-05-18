@@ -4,13 +4,27 @@ class BooksController < ApplicationController
 
     @list_of_books = matching_books.order({ :created_at => :desc })
 
-    books = GoogleBooks.search('The Great Gatsby')
-    first_book = books.first
-    @fb = first_book.authors
-
     render({ :template => "books/index" })
   end
 
+  def search
+    search_book = params.fetch("query_title")
+        
+    the_book = GoogleBooks.search(search_book)
+    first_book = the_book.first
+
+    title = first_book.title
+    description = first_book.published_date
+    published_date = first_book.published_date
+    isbn = first_book.isbn
+    page_count = first_book.page_count
+    publisher = first_book.publisher
+
+    authors = first_book.author
+
+    render({ :template => "books/search" })
+  end
+  
   def show
     the_id = params.fetch("path_id")
 
