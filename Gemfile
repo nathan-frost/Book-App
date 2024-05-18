@@ -110,3 +110,6 @@ end
 
 #Add googlebooks gemfile
 gem "googlebooks"
+
+#Add kaminari gemfile
+gem "kaminari"

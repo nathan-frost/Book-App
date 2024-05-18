@@ -1,9 +1,7 @@
 class BooksController < ApplicationController
   def index
-    matching_books = Book.all
-
-    @list_of_books = matching_books.order({ :created_at => :desc })
-
+    @list_of_books = Book.order({ :created_at => :desc }).page(params[:page]).per(1)
+    
     render({ :template => "books/index" })
   end
 
