@@ -1,56 +1,131 @@
-<h1>Search: <%= @search_book%></h1>
+<div class = "d-flex justify-content-between">
+  <div>
+    <h1>
+      Search Results: <%= @search_book%>
+    </h1>
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Search Again
+    </button>
 
-<img src="<%= @image %>" alt="Thumbnail"/>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="new_book">Add New Book</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/book_search" class="d-flex" role="search" method ="get">
+              <input class="form-control me-2" type="search" placeholder="Search by Title" aria-label="Search" id="title_box" name="query_title">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div>
-  <form class="form-floating mb-3">
-    <input type="title" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@title %>">
-    <label for="floatingInputValue">Title</label>
+  <form action ="/insert_book" method="post">
+    <div class="form-floating mb-3">
+      <input type="title" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@title %>">
+      <label for="floatingInputValue">Title</label>    
+    </div>
+
+    <div class="form-floating mb-3">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2Disabled" style="height: 100px"><%=@description %></textarea>
+      <label for="floatingTextarea2Disabled">Description</label>
+    </div>
+
+    <div class="form-floating">
+      <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example">
+        <option selected>Select One Author</option>
+        <% @authors.each do |author|%>
+          <option value="<%= author%>"><%= author%></option>  
+        <% end %>
+      </select>
+      <label for="floatingSelectDisabled">Works with selects</label>
+    </div>
+
+    <hr>
+
+    <div class = "d-flex justify-content-evenly">
+
+      <img src="<%= @image %>" alt="Thumbnail"/>
+
+      <div>
+        <div class="form-floating mb-3">
+          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@isbn %>" disabled>
+          <label for="floatingInputValue">ISBN</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value=" <%=@published_date %>" disabled>
+          <label for="floatingInputValue">Published Date</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@page_count %>" disabled>
+          <label for="floatingInputValue">Page Count</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@publisher %>" disabled>
+          <label for="floatingInputValue">Publisher</label>
+        </div>
+      </div>
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button">Add Book</button>
+    </div>
+
+
+
   </form>
-</div>
-
-<div class="form-floating mb-3">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2Disabled" style="height: 100px"><%=@description %></textarea>
-  <label for="floatingTextarea2Disabled">Description</label>
-</div>
-
-<div class="form-floating">
-  <select class="form-select" id="floatingSelectDisabled" aria-label="Floating label disabled select example">
-    <option selected>Select One Author</option>
-    <% @authors.each do |author|%>
-      <option value="<%= author%>"><%= author%></option>  
-    <% end %>
-
-  </select>
-  <label for="floatingSelectDisabled">Works with selects</label>
 </div>
 
 <hr>
 
-<div>
-  <form class="form-floating mb-3">
-    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@isbn %>" disabled>
-    <label for="floatingInputValue">ISBN</label>
-  </form>
-</div>
 
-<div>
-  <form class="form-floating mb-3">
-    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value=" <%=@published_date %>" disabled>
-    <label for="floatingInputValue">Published Date</label>
-  </form>
-</div>
 
-<div>
-  <form class="form-floating mb-3">
-    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@page_count %>" disabled>
-    <label for="floatingInputValue">Page Count</label>
-  </form>
-</div>
-
-<div>
-  <form class="form-floating mb-3">
-    <input type="text area" class="form-control" id="floatingInputValue" placeholder="name@example.com" value="<%=@publisher %>" disabled>
-    <label for="floatingInputValue">Publisher</label>
-  </form>
-</div>
+    the_book.title = params.fetch("query_title")
+    the_book.description = params.fetch("query_description")
+    the_book.published_date = params.fetch("query_published_date")
+    the_book.isbn13 = params.fetch("query_isbn13")
+    the_book.page_count = params.fetch("query_page_count")
+    the_book.image_url = params.fetch("query_image_url")
+    the_book.publisher = params.fetch("query_publisher")
+    the_book.author_id = params.fetch("query_author_id")
+    the_book.reviews_count = params.fetch("query_reviews_count")
+    the_book.classifications_count = params.fetch("query_classifications_count")
