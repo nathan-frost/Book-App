@@ -1,8 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    matching_reviews = Review.all
-
-    @list_of_reviews = matching_reviews.order({ :created_at => :desc })
+    @list_of_reviews = Review.order({ :created_at => :desc }).page(params[:page]).per(1)
 
     render({ :template => "reviews/index" })
   end
