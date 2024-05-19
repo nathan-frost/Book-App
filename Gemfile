@@ -113,3 +113,4 @@ gem "googlebooks"
 
 #Add kaminari gemfile
 gem "kaminari"
+

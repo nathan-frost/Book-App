@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @list_of_books = Book.order({ :created_at => :desc }).page(params[:page]).per(1)
+    @list_of_books = Book.order({ :created_at => :desc }).page(params[:page]).per(5)
     
     render({ :template => "books/index" })
   end
@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
     @title = first_book.title
     @description = first_book.description
-    @published_date = first_book.published_date
+    @published_date = first_book.published_date.to_datetime.year
     @isbn = first_book.isbn
     @page_count = first_book.page_count
     @publisher = first_book.publisher

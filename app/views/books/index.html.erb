@@ -40,8 +40,8 @@
         <th>Image</th>
         <th>Title</th>
         <th>Author</th>
-        <th>Published date</th>
-        <th>Page count</th>
+        <th>Published Year</th>
+        <th>Page Count</th>
         <th>Reviews</th>
         <th> </th>
       </thead>
@@ -50,7 +50,7 @@
         <tr>
           <td><img src="<%= a_book.image_url %>" alt="Thumbnail" width="36" height="30"/></td>
           <td><%= a_book.title %></td>
-          <td><%= a_book.author_id %></td>
+          <td><%= Author.where({ :id => a_book.author_id}).at(0).name %></td>
           <td><%= a_book.published_date %></td>
           <td><%= a_book.page_count %></td>
           <td><%= a_book.reviews_count %></td>
