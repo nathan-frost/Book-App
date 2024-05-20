@@ -22,6 +22,10 @@ class ReviewsController < ApplicationController
     the_review.review = params.fetch("query_review")
     the_review.book_id = params.fetch("query_book_id")
 
+    #update the average rating for the book
+
+
+
     if the_review.valid?
       the_review.save
       redirect_to("/reviews", { :notice => "Review created successfully." })

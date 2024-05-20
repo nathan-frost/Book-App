@@ -1,8 +1,6 @@
 class AuthorsController < ApplicationController
   def index
-    matching_authors = Author.all
-
-    @list_of_authors = matching_authors.order({ :created_at => :desc })
+    @list_of_authors = Author.order({ :created_at => :desc }).page(params[:page]).per(5)
 
     render({ :template => "authors/index" })
   end

@@ -1,69 +1,41 @@
-<div>
+<div class = "d-flex justify-content-between">
   <div>
     <h1>
-      List of all authors
+      List of Authors
     </h1>
   </div>
 </div>
+
 <hr>
+
 <div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover table-striped" border="1">
+      <thead class = "table-dark text-center">
+        <th>Author Name</th>
+        <th>Number of Books</th>
+        <th>Most Reviewed Book</th>
+        <th>Top Rated Book</th>
+        <th> </th>
+      </thead>
+      <tbody class="text-center">
+        <% @list_of_authors.each do |an_author| %>
+        <tr>
+          <td><%= an_author.name %></td>
+          <td><%= an_author.books_count %></td>
+          <td><%= Book.order({ :reviews_count => :asc}).where({ :author_id => an_author.id}).at(0).title %></td>
 
-        <th>
-          Name
-        </th>
 
-        <th>
-          Books count
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_authors.each do |an_author| %>
-      <tr>
-        <td>
-          <%= an_author.id %>
-        </td>
-
-        <td>
-          <%= an_author.name %>
-        </td>
-
-        <td>
-          <%= an_author.books_count %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(an_author.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_author.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/authors/<%= an_author.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
+          #need to create the average rating field then add here.
+          <td><%= Book.order({ :reviews_count => :asc}).where({ :author_id => an_author.id}).at(0).title %></td>
+          <td>
+            <a href="/authors/<%= an_author.id %>">Show details</a>
+          </td>
+        </tr>
+        <% end %>
+      <tbody >
     </table>
   </div>
 </div>
 
-<hr>
+<%= paginate @list_of_authors%>
