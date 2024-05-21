@@ -43,6 +43,7 @@
         <th>Published Year</th>
         <th>Page Count</th>
         <th>Reviews</th>
+        <th>Average Rating</th>
         <th> </th>
       </thead>
       <tbody class="text-center">
@@ -54,6 +55,7 @@
           <td><%= a_book.published_date %></td>
           <td><%= a_book.page_count %></td>
           <td><%= a_book.reviews_count %></td>
+          <td><%= a_book.avg_rating %></td>
           <td>
             <a href="/books/<%= a_book.id %>">Show details</a>
           </td>

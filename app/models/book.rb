@@ -22,5 +22,10 @@ class Book < ApplicationRecord
   has_many  :classifications, class_name: "Classification", foreign_key: "book_id", dependent: :destroy
   belongs_to :author, required: true, class_name: "Author", foreign_key: "author_id", counter_cache: true
 
+  def avg_rating
+    reviews.average(:rating_numeric)
+  end
 
 end
+
+

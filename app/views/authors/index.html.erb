@@ -24,10 +24,7 @@
           <td><%= an_author.name %></td>
           <td><%= an_author.books_count %></td>
           <td><%= Book.order({ :reviews_count => :asc}).where({ :author_id => an_author.id}).at(0).title %></td>
-
-
-          #need to create the average rating field then add here.
-          <td><%= Book.order({ :reviews_count => :asc}).where({ :author_id => an_author.id}).at(0).title %></td>
+          <td><%= an_author.highest_rated_book.title %></td>
           <td>
             <a href="/authors/<%= an_author.id %>">Show details</a>
           </td>

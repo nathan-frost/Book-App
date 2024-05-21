@@ -10,4 +10,8 @@
 #
 class Author < ApplicationRecord
   has_many  :books, class_name: "Book", foreign_key: "author_id", dependent: :destroy
+
+  def highest_rated_book
+    books.includes(:reviews).max_by(&:avg_rating)
+  end
 end

@@ -25,7 +25,6 @@ class ReviewsController < ApplicationController
     #update the average rating for the book
 
 
-
     if the_review.valid?
       the_review.save
       redirect_to("/reviews", { :notice => "Review created successfully." })
