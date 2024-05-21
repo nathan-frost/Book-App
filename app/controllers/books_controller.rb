@@ -13,7 +13,12 @@ class BooksController < ApplicationController
 
     @title = first_book.title
     @description = first_book.description
-    @published_date = first_book.published_date.to_datetime.year
+    begin
+      @published_date = first_book.published_date.to_datetime.year  
+    rescue StandardError => e
+      @published_date = "N/A"       
+    end
+
     @isbn = first_book.isbn
     @page_count = first_book.page_count
     @publisher = first_book.publisher

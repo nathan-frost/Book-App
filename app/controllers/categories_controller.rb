@@ -1,8 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    matching_categories = Category.all
-
-    @list_of_categories = matching_categories.order({ :created_at => :desc })
+    @list_of_categories = Category.order({ :created_at => :desc }).page(params[:page]).per(5)
 
     render({ :template => "categories/index" })
   end

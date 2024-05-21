@@ -1,102 +1,37 @@
-<div>
+<div class = "d-flex justify-content-between">
   <div>
     <h1>
-      List of all categories
+      List of Categories
     </h1>
   </div>
 </div>
 
+
 <hr>
 
 <div>
-  <div>
-    <h2>
-      Add a new category
-    </h2>
-
-    <form action="/insert_category" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="classifications_count_box">
-          Classifications count
-        </label>
-
-        <input type="text" id="classifications_count_box" name="query_classifications_count">
-      </div>
-
-      <button>
-        Create category
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Classifications count
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_categories.each do |a_category| %>
-      <tr>
-        <td>
-          <%= a_category.id %>
-        </td>
-
-        <td>
-          <%= a_category.name %>
-        </td>
-
-        <td>
-          <%= a_category.classifications_count %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_category.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_category.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/categories/<%= a_category.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover table-striped" border="1">
+      <thead class = "table-dark text-center">
+        <th>Category Name</th>
+        <th>Number of Books in Category</th>
+        <th>Average Rating in Category</th>
+        <th>Top Rated Book in Category</th>
+        <th> </th>
+      </thead>
+      <tbody class="text-center">
+        <% @list_of_categories.each do |a_category| %>
+        <tr>
+          <td><%= a_category.name %></td>
+          <td><%= a_category.classifications_count %></td>
+          <td>
+            <a href="/authors/<%= an_author.id %>">Show details</a>
+          </td>
+        </tr>
+        <% end %>
+      <tbody >
     </table>
   </div>
 </div>
 
-<hr>
+<%= paginate @list_of_categories%>
