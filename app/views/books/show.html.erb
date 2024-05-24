@@ -1,7 +1,8 @@
+
 <div>
   <div>
     <h1>
-      Book #<%= @the_book.id %> details
+      <%= @the_book.title %>
     </h1>
 
     <div>
@@ -18,15 +19,13 @@
       </div>
     </div>
 
-    <dl>
-      <dt>
-        Title
-      </dt>
-      <dd>
-        <%= @the_book.title %>
-      </dd>
 
-      <dt>
+
+
+<div>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover" border="1">
+            <dt>
         Description
       </dt>
       <dd>
@@ -72,7 +71,7 @@
         Author
       </dt>
       <dd>
-        <%= @the_book.author_id %>
+        <%= Author.where({ :id => @the_book.author_id}).at(0).name %>
       </dd>
 
       <dt>
@@ -81,125 +80,7 @@
       <dd>
         <%= @the_book.reviews_count %>
       </dd>
-
-      <dt>
-        Classifications count
-      </dt>
-      <dd>
-        <%= @the_book.classifications_count %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_book.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_book.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit book
-    </h2>
-
-    <form action="/modify_book/<%= @the_book.id %>"  method="post" >
-      <div>
-        <label for="title_box">
-          Title
-        </label>
-
-        <input type="text" id="title_box" name="query_title" value="<%= @the_book.title %>">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <textarea id="description_box" name="query_description"><%= @the_book.description %></textarea>
-      </div>
-
-      <div>
-        <label for="published_date_box">
-          Published date
-        </label>
-
-        <input type="text" id="published_date_box" name="query_published_date" value="<%= @the_book.published_date %>">
-      </div>
-
-      <div>
-        <label for="isbn13_box">
-          Isbn13
-        </label>
-
-        <input type="text" id="isbn13_box" name="query_isbn13" value="<%= @the_book.isbn13 %>">
-      </div>
-
-      <div>
-        <label for="page_count_box">
-          Page count
-        </label>
-
-        <input type="text" id="page_count_box" name="query_page_count" value="<%= @the_book.page_count %>">
-      </div>
-
-      <div>
-        <label for="image_url_box">
-          Image url
-        </label>
-
-        <input type="text" id="image_url_box" name="query_image_url" value="<%= @the_book.image_url %>">
-      </div>
-
-      <div>
-        <label for="publisher_box">
-          Publisher
-        </label>
-
-        <input type="text" id="publisher_box" name="query_publisher" value="<%= @the_book.publisher %>">
-      </div>
-
-      <div>
-        <label for="author_id_box">
-          Author
-        </label>
-
-        <input type="text" id="author_id_box" name="query_author_id" value="<%= @the_book.author_id %>">
-      </div>
-
-      <div>
-        <label for="reviews_count_box">
-          Reviews count
-        </label>
-
-        <input type="text" id="reviews_count_box" name="query_reviews_count" value="<%= @the_book.reviews_count %>">
-      </div>
-
-      <div>
-        <label for="classifications_count_box">
-          Classifications count
-        </label>
-
-        <input type="text" id="classifications_count_box" name="query_classifications_count" value="<%= @the_book.classifications_count %>">
-      </div>
-
-      <button>
-        Update book
-      </button>
-    </form>
+    </table>
   </div>
 </div>
 
@@ -218,24 +99,27 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="row g-3">
-          <div>
-          <label for="customRange3" class="form-label">Rating</label>
-          <input type="range" class="form-range" min="0" max="5" step="1" id="customRange3">
- 
+        <form action ="/insert_review" method="post">
+          <div class="col-3">
+            <label for="query_rating_numeric" class="form-label">Rating</label>
+            <input type="text" min="0" max="5" id="query_rating_numeric" name = "query_rating_numeric">
           </div>
           <div class="col-12">
             <div class="form-floating"> Review Description
-              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <textarea class="form-control" placeholder="Leave review here" id="query_review" name="query_review"></textarea>
               <label for="floatingTextarea">Comments</label>
             </div>
-        
+          </div>
+          <div>
+            <input type="hidden" id="query_book_id" name="query_book_id" value="<%= @the_book.id %>">
+            <input type="hidden" id="query_reviewer_id" name="query_reviewer_id" value="<%= @user_id %>">          
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Add Review</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

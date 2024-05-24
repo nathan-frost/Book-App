@@ -1,36 +1,88 @@
-<h1>test</h1>
+<h2>Top 3 Recently Added</h2>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="alert alert-success">
-        Full width
-      </div>
-    </div>
+<hr>
+<h4>Books</h4>
+<hr>
+
+<div>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover table-striped" border="1">
+      <thead class = "table-dark text-center">
+        <th>Title</th>
+        <th>Author</th>
+        <th>Average Rating</th>
+        <th> </th>
+      </thead>
+      <tbody class="text-center">
+        <% @list_of_books.each do |a_book| %>
+        <tr>
+          <td><%= a_book.title %></td>
+          <td><%= a_book.author.name %></td>
+          <td><%= a_book.avg_rating %></td>
+          <td>
+            <a href="/books/<%= a_book.id %>">Show details</a>
+          </td>
+        </tr>
+        <% end %>
+      <tbody >
+    </table>
   </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <div class="alert alert-success">
-        2/3
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="alert alert-success">
-        1/3
-      </div>  
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="alert alert-success">
-        Full width
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <hr>
+<h4>Authors</h4>
 <hr>
 
+<div>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover table-striped" border="1">
+      <thead class = "table-dark text-center">
+        <th>Name</th>
+        <th>Number of Books</th>
+        <th>Top Rated Book</th>
+        <th> </th>
+      </thead>
+      <tbody class="text-center">
+        <% @list_of_authors.each do |an_author| %>
+        <tr>
+          <td><%= an_author.name %></td>
+          <td><%= an_author.books_count %></td>
+          <td><%= an_author.highest_rated_book.title %></td>
+          <td>
+            <a href="/authors/<%= an_author.id %>">Show details</a>
+          </td>
+        </tr>
+        <% end %>
+      <tbody >
+    </table>
+  </div>
+</div>
+
+<hr>
+<h4>Reviews</h4>
+<hr>
+
+<div>
+  <div class = "row justify-content-center table-responsive">
+    <table class = "table align-middle table-hover table-striped" border="1">
+      <thead class = "table-dark text-center">
+        <th>Title</th>
+        <th>Reviewer</th>
+        <th>Rating</th>
+        <th> </th>
+      </thead>
+      <tbody class="text-center">
+        <% @list_of_reviews.each do |a_review| %>
+        <tr>
+          <td><%= Book.where({ :id => a_review.id}).at(0).title %></td>
+          <td><%= User.where({ :id => a_review.id}) %></td>
+          <td><%= a_review.rating_numeric%></td>
+          <td>
+            <a href="/reviews/<%= a_review.id %>">Show details</a>
+          </td>
+        </tr>
+        <% end %>
+      <tbody >
+    </table>
+  </div>
+</div>

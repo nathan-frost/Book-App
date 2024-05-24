@@ -4,37 +4,6 @@
       List of Reviews
     </h1>
   </div>
-    <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Review
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="new_review">Add a Review</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form action="/insert_review" class="d-flex" method ="post">
-              <input class="form-control me-2" type="search" placeholder="temp" aria-label="Search" id="title_box" name="query_title">
-            </form>
-
-
-
-
-
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <hr>
@@ -44,7 +13,6 @@
     <table class = "table align-middle table-hover table-striped" border="1">
       <thead class = "table-dark text-center">
         <th>Book Title</th>
-        <th>Reviewer</th>
         <th>Rating</th>
         <th>Review</th>
         <th> </th>
@@ -53,7 +21,6 @@
         <% @list_of_reviews.each do |a_review| %>
         <tr>
           <td><%= Book.where({ :id => a_review.id}).at(0).title %></td>
-          <td><%= User.where({ :id => a_review.id}).at(0).last_name + ", " + User.where({ :id => a_review.id}).at(0).first_name %></td>
           <td><%= a_review.rating_numeric %></td>
           <td><%= a_review.review %></td>
           <td>

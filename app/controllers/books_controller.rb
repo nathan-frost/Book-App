@@ -31,6 +31,8 @@ class BooksController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
+    @user_id = current_user.id
+
     matching_books = Book.where({ :id => the_id })
 
     @the_book = matching_books.at(0)
